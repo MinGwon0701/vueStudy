@@ -1,14 +1,17 @@
 <template>
     <div>
         <router-link to="/example/valuePass">컴포넌트 간 데이터 다루기</router-link>
-
-        <router-view/>
+        <br>
+        <router-link to="/example/Todo">Todo</router-link>
+        
+        <!-- <router-view/> -->
     </div>
 </template>
 
 <script>
+export default {
 
-export default {}
+}
 </script>
 
 <style scoped>

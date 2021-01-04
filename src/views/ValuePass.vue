@@ -1,11 +1,11 @@
 <template>
-  <div>
+    <div>
+        <!-- 부모 컴포넌트에서 데이터 바꾸기 -->
+        <value-pass-no-1 /> <br> <hr>
 
-      <value-pass-no-1 /> <br> <hr>
-
-      <value-pass-no-2 /> <br> <hr>
-
-      <value-pass-no-3 /> <br> <hr>
+        <!-- 자식 컴포넌트에서 데이터 바꾸기 -->
+        <value-pass-no-2 /> <br> <hr>
+        <value-pass-no-3 /> <br> <hr>
   </div>
 </template>
 

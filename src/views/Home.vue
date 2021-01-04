@@ -2,7 +2,7 @@
   <div>
     <h1>This Page is Home</h1>
     <form action="">
-      <InputField v-model="value" />
+      <input-field v-model="value" />
       <button type="submit">Submit</button>
     </form>
     {{ value }}

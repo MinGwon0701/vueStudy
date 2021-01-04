@@ -22,9 +22,14 @@ const routes = [
   },
   {
     path: '/example/valuePass',
-    name: 'value-pass',
+    name: 'ValuePass',
     component: () => import('../views/ValuePass.vue')
   },
+  {
+    path: '/example/todo',
+    name: 'Todo',
+    component: () => import('../views/Todo.vue')
+  }
 
 ]
 

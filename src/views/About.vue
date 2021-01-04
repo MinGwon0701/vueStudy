@@ -9,42 +9,21 @@
         </div>
       </template>
     </kossie-coder>
-    <br>
-    <div>
-      <h1>Todo App</h1>
-
-      <completed-todo v-bind:todos="todos"/>
-
-      <add-todo v-on:add-todo="addTodo"/>
-      
-      <todo-list
-        v-bind:todos="todos" 
-        v-on:toggle-checkbox="toggleCheckbox"
-        v-on:click-delete="deleteTodo"
-      />
-    </div>
-    
   </div>
 </template>
 
 <script>
-import AddTodo from '../components/AddTodo.vue';
-import CompletedTodo from '../components/CompletedTodo.vue';
 import KossieCoder from '../components/KossieCoder.vue';
-import TodoList from '../components/TodoList.vue';
 
 export default {
   components: {
     KossieCoder,
-    AddTodo,
-    TodoList,
-    CompletedTodo
   },
 
   data() {
     return {
       name: 'default name',
-      count: 3,
+      count: 2,
       todoText: '',
       todos: [
         { id: 1, text: 'buy a car', checked: false },
