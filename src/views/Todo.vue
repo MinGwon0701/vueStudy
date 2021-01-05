@@ -11,21 +11,14 @@
             @deleteTodo="deleteTodo"
             @toggleCheckbox="toggleCheckbox"
         />
-
-        <todo-page-con 
-            :todoList="todoList"
-            :listRange="listRange"
-        />
     </div>
 </template>
 
 <script>
-import TodoPageCon from '../components/TodoPageCon.vue'
 import TodoList from '../components/TodoList.vue'
 export default {
     components: {
         TodoList,
-        TodoPageCon,
     },
 
     data() {
@@ -38,19 +31,6 @@ export default {
             text: '',
             count: 1,
             completedCount: 0,
-
-            firstList: 0,
-            lastList: 0,
-            listRange: 5,
-
-            pageCount: 0,
-            firstPage: 0,
-            nowPage: 0,
-            lastPage: 0,
-            startPage: 0,
-            endPage: 0,
-            pageRange1: 0,
-            pageRange2: 0,
         }
     },
 
