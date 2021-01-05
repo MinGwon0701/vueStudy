@@ -11,14 +11,20 @@
             @deleteTodo="deleteTodo"
             @toggleCheckbox="toggleCheckbox"
         />
+
+        <todo-paging
+            :todoList="todoList"
+        />
     </div>
 </template>
 
 <script>
 import TodoList from '../components/TodoList.vue'
+import TodoPaging from '../components/TodoPaging.vue'
 export default {
     components: {
         TodoList,
+        TodoPaging,
     },
 
     data() {
