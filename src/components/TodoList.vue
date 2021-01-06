@@ -2,7 +2,7 @@
     <div>
         <input type="checkbox" :checked="todoItem.checked" @change="toggleCheckbox(todoItem.index)"> 
         <!-- {{ todoItem.index }} | -->
-        <span :style="todoItem.checked ? 'text-decoration: line-through; text-decoration-color: red;': ''">{{ todoItem.text }} </span>
+        <span :style="todoItem.checked ? 'text-decoration: line-through; text-decoration-color: red;': ''"> {{ todoItem.text }} </span>
         <!-- {{ todoItem.checked }}  -->
         <button @click="deleteTodo(todoItem.index)">Delete</button>
     </div>
@@ -29,5 +29,7 @@ export default {
 </script>
 
 <style scoped>
-
+button {
+    cursor: pointer;
+}
 </style>

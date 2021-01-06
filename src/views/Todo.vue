@@ -14,6 +14,14 @@
 
         <todo-paging
             :todoList="todoList"
+            :pageCount="pageCount"
+            :startPage="startPage"
+            :nowPage="nowPage"
+            :endPage="endPage"
+            :pageRange="pageRange"
+            @pageMinus="pageMinus"
+            @pageClick="pageClick"
+            @pagePlus="pagePlus"
         />
     </div>
 </template>
@@ -37,22 +45,45 @@ export default {
             text: '',
             count: 1,
             completedCount: 0,
+
+            startList: 0,
+            lastList: 0,
+            listRange: 5,
+
+            // firstPage: Number,
+            pageCount: 0,
+            startPage: 1,
+            nowPage: 1,
+            endPage: 0,
+            pageRange: 5,
         }
+    },
+
+    created() {
+        for(let i = 0; i < 150 ; i++){
+            this.todoList.push({
+                text: 'test',
+                index: this.count,
+                checked: false,
+            });
+            this.count++;
+        }
+        
+        this.pageCount = Math.ceil(this.todoList.length / this.listRange);
     },
 
     methods: {
         insertTodo(event) {
-            for(let wow = 0; wow < 30 ; wow++){ //데이터 생산을 위해 만듬 끝나면 지우세요
-                this.todoList.push({
-                    text: event.target.value,
-                    index: this.count,
-                    checked: false,
-                });
-                this.count++;
-                console.log(this.todoList);
-                this.text ='';
-            }
-            
+            this.todoList.push({
+                text: event.target.value,
+                index: this.count,
+                checked: false,
+            });
+            this.count++;
+            console.log(this.todoList);
+            this.text ='';
+
+            this.todoPaging();
         },
         toggleCheckbox(index) {
             let index2 = this.todoList.findIndex(todo => todo.index == index);
@@ -65,6 +96,7 @@ export default {
             console.log(this.todoList);
 
             this.completedCountCon();
+            this.todoPaging();
         },
         completedCountCon() {
             this.completedCount = 0;
@@ -73,10 +105,66 @@ export default {
                 if(todo.checked == true)
                     this.completedCount++;
             });
-        }
+        },
+        todoPaging() {
+            this.pageCount = Math.ceil(this.todoList.length / this.listRange);
+
+
+        },
+        pageMinus() {
+            let index = this.nowPage - 5;
+            // this.nowPage -= 5;
+            this.endPage = Math.floor(index / 5 + 1) * 5;
+
+            // 5, 10, 15, 20, 25... 일 때, 따로 실행
+            if(index % 5 == 0) {
+                this.endPage = Math.floor(index / 5) * 5;
+            }
+
+            this.startPage = this.endPage - 4;
+            this.nowPage = this.startPage;
+
+            if(this.endPage > this.pageCount) {
+                this.endPage = this.pageCount;
+            }
+        },
+        pageClick(index) {
+            this.nowPage = index;
+            
+            this.endPage = (Math.floor(index / 5) + 1) * 5;
+
+            // 5, 10, 15, 20, 25... 일 때, 따로 실행
+            if(index % 5 == 0) {
+                this.endPage = Math.floor(index / 5) * 5;
+            }
+
+            this.startPage = this.endPage - 4;
+
+            if(this.endPage > this.pageCount) {
+                this.endPage = this.pageCount;
+            }
+        },
+        pagePlus() {
+            let index = this.nowPage + 5;
+            // this.nowPage += 5;
+            this.endPage = Math.floor(index / 5 + 1) * 5;
+
+            // 5, 10, 15, 20, 25... 일 때, 따로 실행
+            if(index % 5 == 0) {
+                this.endPage = Math.floor(index / 5) * 5;
+            }
+
+            this.startPage = this.endPage - 4;
+            this.nowPage = this.startPage;
+
+            if(this.endPage > this.pageCount) {
+                this.endPage = this.pageCount;
+            }
+        },
     },
 }
 </script>
 
 <style scoped>
+
 </style>
